@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
+    public CameraShake camShake;
     private bool isGameOver = false;
     public Text gameOverText;
 
@@ -21,9 +22,11 @@ public class PlayerScript : MonoBehaviour
         {
             scoreText.text = "";
             timeText.text = "";
+            camShake.startShake = false;
 
             gameOverText.text = ("GameOver\n" + "Your score is " + score);
             Time.timeScale = 0;
+
         }
         else
         {
@@ -34,7 +37,6 @@ public class PlayerScript : MonoBehaviour
             {
                 isGameOver = true;
                 currentTime = 0;
-                score = 0;
             }
         }
 
@@ -46,6 +48,7 @@ public class PlayerScript : MonoBehaviour
         {
             currentTime -=5;
             score -= 3;
+            camShake.startShake = true;
         }
     }
 
